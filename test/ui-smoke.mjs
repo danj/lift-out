@@ -12,7 +12,7 @@ const shots = path.join(here, "shots");
 mkdirSync(shots, { recursive: true });
 
 const server = await serve();
-const browser = await puppeteer.launch({ executablePath: "/usr/bin/google-chrome", headless: true, args: ["--no-sandbox"] });
+const browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome", headless: true, args: ["--no-sandbox"] });
 const page = await browser.newPage();
 await page.setViewport({ width: 1280, height: 800 });
 const errors = [];
