@@ -25,7 +25,7 @@ const images = {
     <text x="100" y="54" font-size="24" font-weight="bold" fill="#c33">HOT DEALS ON TYRES</text></svg>`],
 };
 
-const browser = await puppeteer.launch({ executablePath: "/usr/bin/google-chrome", headless: true, args: ["--no-sandbox"] });
+const browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome", headless: true, args: ["--no-sandbox"] });
 const page = await browser.newPage();
 for (const [name, [width, height, svg]] of Object.entries(images)) {
   await page.setViewport({ width, height });

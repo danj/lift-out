@@ -10,7 +10,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const ext = path.join(here, "..");
 const server = await serve();
 
-const browser = await puppeteer.launch({ executablePath: "/usr/bin/google-chrome", headless: true, pipe: true, enableExtensions: [ext], args: ["--no-sandbox"] });
+const browser = await puppeteer.launch({ executablePath: process.env.CHROME_PATH || "/usr/bin/google-chrome", headless: true, pipe: true, enableExtensions: [ext], args: ["--no-sandbox"] });
 try {
   const target = await browser.waitForTarget((t) => t.type() === "service_worker" && t.url().includes("background.js"), { timeout: 15000 });
   const worker = await target.worker();
